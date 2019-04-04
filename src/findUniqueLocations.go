@@ -44,7 +44,7 @@ func visit (placeVisited gridLoc) {
 
 func main() {
 
-	inputSize := 100
+	inputSize := 25000000
 	journey := RandomJourney(inputSize)
 	startTime := time.Now()
 	uniqueLocations := FindUniqueLocations(journey)
