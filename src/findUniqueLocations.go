@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"time"
+)
+
 type gridLoc struct {
 	x int
 	y int
@@ -38,7 +43,16 @@ func visit (placeVisited gridLoc) {
 }
 
 func main() {
-	journey := RandomJourney(100)
+
+	inputSize := 100
+	journey := RandomJourney(inputSize)
+	startTime := time.Now()
 	uniqueLocations := FindUniqueLocations(journey)
-	println(uniqueLocations)
+	endTime := time.Now()
+	totalTimeNanosecs := endTime.Sub(startTime)
+
+	println("Size of input:    ", inputSize)
+	println("Unique locations: ", uniqueLocations)
+	print("Total time:        ")
+	fmt.Println(totalTimeNanosecs)
 }
