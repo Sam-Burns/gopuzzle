@@ -36,3 +36,9 @@ func visit (placeVisited gridLoc) {
 	}
 	placesVisited[placeVisited.x][placeVisited.y] = true
 }
+
+func main() {
+	journey := RandomJourney(100)
+	uniqueLocations := FindUniqueLocations(journey)
+	println(uniqueLocations)
+}
