@@ -2,6 +2,9 @@ package gameMap
 
 var gameMapByteModificationMask = [8]uint8{128, 64, 32, 16, 8, 4, 2, 1}
 
+type GameMapRowType [2048]uint8
+type GameMapType [16384]GameMapRowType
+
 func SetBitNoToTrue(originalByte uint8, bitNo int) uint8 {
 	return originalByte | gameMapByteModificationMask[bitNo]
 }

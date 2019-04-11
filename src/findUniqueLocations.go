@@ -13,12 +13,7 @@ type gridLoc struct {
 	y int
 }
 
-var placesVisited = make(map[int]map[int]bool)
-
-type gameMapRowType [2048]uint8
-type gameMapType [16384]gameMapRowType
-
-var actualGameMap gameMapType
+var actualGameMap gameMap.GameMapType
 
 func FindUniqueLocations(directionsStr string) int {
 
@@ -50,14 +45,7 @@ func visit (placeVisited gridLoc) {
 
 	yRowNo := getRowNoOnYAxis(placeVisited.y)
 
-
 	actualGameMap[yRowNo][xByteNo] = gameMap.SetBitNoToTrue(actualGameMap[yRowNo][xByteNo], xBitNo)
-
-	_, alreadyVisitedXOrdinate := placesVisited[placeVisited.x]
-	if ! alreadyVisitedXOrdinate {
-		placesVisited[placeVisited.x] = make(map[int]bool)
-	}
-	placesVisited[placeVisited.x][placeVisited.y] = true
 }
 
 func getByteNoOnXAxis(ordinate int) int {
@@ -72,7 +60,7 @@ func getRowNoOnYAxis(ordinate int) int {
 	return ordinate
 }
 
-func countPlacesVisited(gameMapToCount gameMapType) int {
+func countPlacesVisited(gameMapToCount gameMap.GameMapType) int {
 
 	total := 0
 
