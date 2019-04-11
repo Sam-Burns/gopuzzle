@@ -42,3 +42,26 @@ func TestDuplicateLocationsAreNotCounted(t *testing.T) {
 		t.Fatalf("Failed counting a path where a location is visited twice: expected %d, got %d", expectedResult, result)
 	}
 }
+
+// To Do: reliable result thing should pass this test!
+//
+//func TestLongerJourney(t *testing.T) {
+//	testCase := "NWNWSSNWWS"
+//	expectedResult := 9
+//	result := FindUniqueLocations(testCase)
+//	if result != expectedResult {
+//		t.Fatalf("Failed counting a longer path: expected %d, got %d", expectedResult, result)
+//	}
+//}
+//
+//
+// To Do: shorter version of failing test
+//
+//func TestLongerJourney(t *testing.T) {
+//	testCase := "NWNWS"
+//	expectedResult := 5
+//	result := FindUniqueLocations(testCase)
+//	if result != expectedResult {
+//		t.Fatalf("Failed counting a longer path: expected %d, got %d", expectedResult, result)
+//	}
+//}
