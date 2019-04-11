@@ -1,11 +1,4 @@
-package main
-
-import (
-	"fmt"
-	"gopuzzle/inputGeneration"
-	"gopuzzle/reliableResult"
-	"time"
-)
+package reliableResult
 
 type gridLoc struct {
 	x int
@@ -44,19 +37,3 @@ func visit (placeVisited gridLoc) {
 	placesVisited[placeVisited.x][placeVisited.y] = true
 }
 
-func main() {
-
-	inputSize := 25000000
-	journey := inputGeneration.RandomJourney(inputSize)
-	startTime := time.Now()
-	uniqueLocations := FindUniqueLocations(journey)
-	endTime := time.Now()
-	totalTimeNanosecs := endTime.Sub(startTime)
-	reliableUniqueLocations := reliableResult.FindUniqueLocations(journey)
-
-	println("Size of input:    ", inputSize)
-	println("Unique locations: ", uniqueLocations)
-	println("Reliable result:  ", reliableUniqueLocations)
-	print("Total time:        ")
-	fmt.Println(totalTimeNanosecs)
-}

@@ -1,4 +1,4 @@
-package main
+package inputGeneration
 
 import (
 	"math/rand"
