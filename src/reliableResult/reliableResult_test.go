@@ -43,6 +43,9 @@ func TestDuplicateLocationsAreNotCounted(t *testing.T) {
 	}
 }
 
+// N.B. failing tests is probably because reliableResult.placesVisited isn't torn down between runs of
+// reliableResult.FindUniqueLocations() . There might be something else wrong as well.
+
 // To Do: reliable result thing should pass this test!
 //
 //func TestLongerJourney(t *testing.T) {
