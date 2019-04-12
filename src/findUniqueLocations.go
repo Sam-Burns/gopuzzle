@@ -7,9 +7,9 @@ import (
 	"time"
 )
 
-var actualGameMap gameMap.GameMapType
-
 func FindUniqueLocations(directionsStr string) int {
+
+	actualGameMap := gameMap.NewGameMap()
 
 	currentLocation := gameMap.GridLoc{8192, 8192}
 
@@ -34,7 +34,6 @@ func FindUniqueLocations(directionsStr string) int {
 func main() {
 
 	inputSize := 25000000
-	//inputSize := 5000000
 	journey := inputGeneration.RandomJourney(inputSize)
 	startTime := time.Now()
 	uniqueLocations := FindUniqueLocations(journey)

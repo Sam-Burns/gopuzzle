@@ -10,6 +10,11 @@ type GridLoc struct {
 	Y int
 }
 
+func NewGameMap() GameMapType {
+	var actualGameMap GameMapType
+	return actualGameMap
+}
+
 func SetBitNoToTrue(originalByte uint8, bitNo int) uint8 {
 	return originalByte | gameMapByteModificationMask[bitNo]
 }
