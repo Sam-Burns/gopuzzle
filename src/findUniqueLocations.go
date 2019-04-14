@@ -11,7 +11,7 @@ func FindUniqueLocations(directionsStr string) int {
 
 	actualGameMap := gameMap.NewGameMap()
 
-	currentLocation := gameMap.GridLoc{8192, 8192}
+	currentLocation := gameMap.GridLoc{0, 0}
 
 	for _, direction := range directionsStr {
 
@@ -38,10 +38,10 @@ func main() {
 	startTime := time.Now()
 	uniqueLocations := FindUniqueLocations(journey)
 	endTime := time.Now()
-	totalTimeNanosecs := endTime.Sub(startTime)
+	totalTime := endTime.Sub(startTime)
 
 	println("Size of input:    ", inputSize)
 	println("Unique locations: ", uniqueLocations)
 	print("Total time:        ")
-	fmt.Println(totalTimeNanosecs)
+	fmt.Println(totalTime)
 }
