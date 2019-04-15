@@ -9,7 +9,7 @@ import (
 
 func FindUniqueLocations(directionsStr string) int {
 
-	actualGameMap := gameMap.NewGameMap()
+	actualGameMap := gameMap.NewGameMap(directionsStr)
 
 	currentLocation := gameMap.GridLoc{0, 0}
 

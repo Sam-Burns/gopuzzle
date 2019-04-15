@@ -10,8 +10,15 @@ type GridLoc struct {
 	Y uint16
 }
 
-func NewGameMap() GameMapType {
-	return make(map[uint16]GameMapRowType)
+var xAxisLength int
+
+func NewGameMap(inputString string) GameMapType {
+
+	yAxisLength := len(inputString) / 20
+	xAxisLength = yAxisLength / 8
+
+	//return make(map[uint16]GameMapRowType)
+	return make(map[uint16]GameMapRowType, yAxisLength)
 }
 
 func SetBitNoToTrue(originalByte *uint8, bitNo *int) uint8 {
@@ -58,7 +65,7 @@ func Visit (placeVisited *GridLoc, actualGameMap *GameMapType) {
 	_, yValueExists := (*actualGameMap)[yRowNo]
 
 	if !yValueExists {
-		(*actualGameMap)[yRowNo] = make(map[uint16]uint8)
+		(*actualGameMap)[yRowNo] = make(map[uint16]uint8, xAxisLength)
 	}
 
 	(*actualGameMap)[yRowNo][xByteNo] = (*actualGameMap)[yRowNo][xByteNo] | gameMapByteModificationMask[xBitNo]
