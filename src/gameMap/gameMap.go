@@ -1,6 +1,6 @@
 package gameMap
 
-var gameMapByteModificationMask = [8]uint8{128, 64, 32, 16, 8, 4, 2, 1}
+var gameMapByteModificationMask = [...]uint8{128, 64, 32, 16, 8, 4, 2, 1}
 
 type GameMapRowType map[uint16]uint8
 type GameMapType map[uint16]GameMapRowType
@@ -54,7 +54,7 @@ func CountPlacesVisited(gameMapToCount *GameMapType) int {
 	return total
 }
 
-func Visit (placeVisited *GridLoc, actualGameMap *GameMapType) {
+func Visit(placeVisited *GridLoc, actualGameMap *GameMapType) {
 
 	xByteNo := placeVisited.X / 8
 
