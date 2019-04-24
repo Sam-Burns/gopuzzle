@@ -7,28 +7,28 @@ import (
 	"time"
 )
 
+var locationsVisited = gameMap.OrdinatesVisitedType{}
+
 func FindUniqueLocations(directionsStr string) int {
 
-	actualGameMap := gameMap.NewGameMap()
+	currentLocation := gameMap.GenerateOrigin()
 
-	currentLocation := gameMap.GridLoc{8192, 8192}
-
-	for _, direction := range directionsStr {
+	for stepNo, direction := range directionsStr {
 
 		if direction == 'N' {
-			currentLocation.Y += 1
+			currentLocation.MoveNorth()
 		} else if direction == 'S' {
-			currentLocation.Y -= 1
+			currentLocation.MoveSouth()
 		} else if direction == 'E' {
-			currentLocation.X += 1
+			currentLocation.MoveEast()
 		} else if direction == 'W' {
-			currentLocation.X -= 1
+			currentLocation.MoveWest()
 		}
 
-		gameMap.Visit(&currentLocation, &actualGameMap)
+		locationsVisited[stepNo] = currentLocation
 	}
 
-	return gameMap.CountPlacesVisited(&actualGameMap)
+	return gameMap.CountLocations(&locationsVisited)
 }
 
 func main() {
