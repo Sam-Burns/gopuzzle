@@ -1,16 +1,22 @@
 package gameMap
 
-import "sort"
+import (
+	"bytes"
+	"encoding/binary"
+)
 
 func CountLocations(ordinatesVisited *OrdinatesVisitedType) int {
 
 	count := 0
 
-	sort.Ints(ordinatesVisited[])
+	SortOrdinates(ordinatesVisited)
 
-	for _, value := range ordinatesVisited {
-		if value != 0 {
-			count += 1
+	for index, value := range ordinatesVisited {
+		if index == 0 {
+			count++
+		} else if value == 0 {
+		} else if value != ordinatesVisited[index-1] {
+			count++
 		}
 	}
 
@@ -18,20 +24,37 @@ func CountLocations(ordinatesVisited *OrdinatesVisitedType) int {
 }
 
 func SortOrdinates(ordinatesToSort *OrdinatesVisitedType) {
+	radixsort(ordinatesToSort)
+}
 
+const digit = 4
+const maxbit uint64 = 1 << 63
 
-
-	for index, currentValue := range ordinatesToSort {
-
-		int j = i - 1;
-
-		/* Move elements of arr[0..i-1], that are
-		   greater than key, to one position ahead
-		   of their current position */
-		while (j >= 0 && arr[j] > currentValue) {
-			arr[j + 1] = arr[j];
-			j = j - 1;
+func radixsort(data *OrdinatesVisitedType) {
+	buf := bytes.NewBuffer(nil)
+	ds := make([][]byte, len(*data))
+	for i, e := range *data {
+		_ = binary.Write(buf, binary.LittleEndian, e^maxbit)
+		b := make([]byte, digit)
+		_, _ = buf.Read(b)
+		ds[i] = b
+	}
+	countingSort := make([][][]byte, 256)
+	for i := 0; i < digit; i++ {
+		for _, b := range ds {
+			countingSort[b[i]] = append(countingSort[b[i]], b)
 		}
-		arr[j + 1] = key;
+		j := 0
+		for k, bs := range countingSort {
+			copy(ds[j:], bs)
+			j += len(bs)
+			countingSort[k] = bs[:0]
+		}
+	}
+	var w uint64
+	for i, b := range ds {
+		buf.Write(b)
+		_ = binary.Read(buf, binary.LittleEndian, &w)
+		(*data)[i] = w^maxbit
 	}
 }

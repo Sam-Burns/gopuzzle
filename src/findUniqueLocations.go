@@ -12,17 +12,18 @@ var locationsVisited = gameMap.OrdinatesVisitedType{}
 func FindUniqueLocations(directionsStr string) int {
 
 	currentLocation := gameMap.GenerateOrigin()
+	locationsVisited.Clobber()
 
 	for stepNo, direction := range directionsStr {
 
 		if direction == 'N' {
-			currentLocation.MoveNorth()
+			gameMap.MoveNorth(&currentLocation)
 		} else if direction == 'S' {
-			currentLocation.MoveSouth()
+			gameMap.MoveSouth(&currentLocation)
 		} else if direction == 'E' {
-			currentLocation.MoveEast()
+			gameMap.MoveEast(&currentLocation)
 		} else if direction == 'W' {
-			currentLocation.MoveWest()
+			gameMap.MoveWest(&currentLocation)
 		}
 
 		locationsVisited[stepNo] = currentLocation
