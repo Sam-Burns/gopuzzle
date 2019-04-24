@@ -1,54 +1,48 @@
 package main
 
 import (
-	"fmt"
 	"gopuzzle/gameMap"
-	"gopuzzle/inputGeneration"
-	"time"
+	"gopuzzle/stringPreprocessing"
 )
 
-const MemSize = 66000
-type OrdinatesVisitedType [MemSize]uint64
-var baseMemory = OrdinatesVisitedType{}
 
 func FindUniqueLocations(directionsStr string) int {
 
-	inputStringLength := len(directionsStr)
+	directionRunes := stringPreprocessing.PreprocessString(&directionsStr)
+
+	inputStringLength := len(directionRunes)
 
 	if inputStringLength < 2 {
 		return inputStringLength
 	}
 
-	activeMemorySlice := (baseMemory)[0:inputStringLength]
+	activeMemorySlice := make([]uint64, inputStringLength, inputStringLength)
 
 	currentLocation := gameMap.GenerateOrigin()
 
-	for stepNo, direction := range directionsStr {
+	stepNo := 0
+
+	for _, direction := range directionRunes {
 
 		switch direction {
-			case 'N': gameMap.MoveNorth(&currentLocation)
-			case 'S': gameMap.MoveSouth(&currentLocation)
-			case 'E': gameMap.MoveEast(&currentLocation)
-			case 'W': gameMap.MoveWest(&currentLocation)
+			case 'N':
+				gameMap.MoveNorth(&currentLocation)
+				activeMemorySlice[stepNo] = currentLocation
+			case 'S':
+				gameMap.MoveSouth(&currentLocation)
+				activeMemorySlice[stepNo] = currentLocation
+			case 'E':
+				gameMap.MoveEast(&currentLocation)
+				activeMemorySlice[stepNo] = currentLocation
+			case 'W':
+				gameMap.MoveWest(&currentLocation)
+				activeMemorySlice[stepNo] = currentLocation
 		}
-
-		activeMemorySlice[stepNo] = currentLocation
+		stepNo++
 	}
 
 	return gameMap.CountLocations(&activeMemorySlice, inputStringLength)
 }
 
 func main() {
-
-	inputSize := 25000000
-	journey := inputGeneration.RandomJourney(inputSize)
-	startTime := time.Now()
-	uniqueLocations := FindUniqueLocations(journey)
-	endTime := time.Now()
-	totalTimeNanosecs := endTime.Sub(startTime)
-
-	println("Size of input:    ", inputSize)
-	println("Unique locations: ", uniqueLocations)
-	print("Total time:        ")
-	fmt.Println(totalTimeNanosecs)
 }
