@@ -1,7 +1,7 @@
 package gameMap
 
 //const MemSize = 50000
-const MemSize = 500
+const MemSize = 500000
 
 type OrdinatesVisitedType [MemSize]uint64
 
