@@ -3,22 +3,34 @@ package gameMap
 import (
 	"bytes"
 	"encoding/binary"
+	"sort"
 )
 
 func CountLocations(ordinatesVisited *OrdinatesVisitedType) int {
 
 	count := 0
 
-	SortOrdinates(ordinatesVisited)
+	//SortOrdinates(ordinatesVisited)
+
+	mySlice := (*ordinatesVisited)[:]
+
+	sort.Slice(
+		mySlice,
+		func(i, j int) bool {
+			return (*ordinatesVisited)[i] < (*ordinatesVisited)[j]
+		})
 
 	for index, value := range ordinatesVisited {
 		if index == 0 {
-			count++
+			//count++
 		} else if value == 0 {
 		} else if value != ordinatesVisited[index-1] {
 			count++
 		}
 	}
+
+	//fmt.Println(*ordinatesVisited)
+	//fmt.Println(count)
 
 	return count
 }

@@ -1,6 +1,9 @@
 package gameMap
 
-type OrdinatesVisitedType [50000]uint64
+//const MemSize = 50000
+const MemSize = 500
+
+type OrdinatesVisitedType [MemSize]uint64
 
 func GenerateOrigin() uint64 {
 	return (1 << 63) + (1 << 31)
