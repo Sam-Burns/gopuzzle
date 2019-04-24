@@ -34,16 +34,3 @@ func (ordinatesVisited *OrdinatesVisitedType) Clobber(inputStringLength int) {
 		index++
 	}
 }
-
-func(ordinatesVisited *OrdinatesVisitedType) getLength() int {
-	index := 0
-	for index < MemSize {
-
-		if (*ordinatesVisited)[index] == 0 {
-			return index + 1
-		}
-
-		index++
-	}
-	return -1
-}
