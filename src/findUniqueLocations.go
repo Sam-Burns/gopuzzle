@@ -18,7 +18,7 @@ func FindUniqueLocations(directionsStr string) int {
 	}
 
 	currentLocation := gameMap.GenerateOrigin()
-	locationsVisited.Clobber()
+	locationsVisited.Clobber(inputStringLength)
 
 	for stepNo, direction := range directionsStr {
 

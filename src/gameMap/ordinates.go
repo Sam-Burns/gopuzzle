@@ -25,9 +25,13 @@ func MoveWest(location *uint64) {
 	*location -= 1 << 32
 }
 
-func (ordinatesVisited *OrdinatesVisitedType) Clobber() {
-	for index, _ := range *ordinatesVisited {
+func (ordinatesVisited *OrdinatesVisitedType) Clobber(inputStringLength int) {
+
+	index := 0
+
+	for index < inputStringLength {
 		(*ordinatesVisited)[index] = 0
+		index++
 	}
 }
 
