@@ -1,7 +1,7 @@
 package gameMap
 
 //const MemSize = 50000
-const MemSize = 500000
+const MemSize = 66000
 
 type OrdinatesVisitedType [MemSize]uint64
 
@@ -29,4 +29,17 @@ func (ordinatesVisited *OrdinatesVisitedType) Clobber() {
 	for index, _ := range *ordinatesVisited {
 		(*ordinatesVisited)[index] = 0
 	}
+}
+
+func(ordinatesVisited *OrdinatesVisitedType) getLength() int {
+	index := 0
+	for index < MemSize {
+
+		if (*ordinatesVisited)[index] == 0 {
+			return index + 1
+		}
+
+		index++
+	}
+	return -1
 }

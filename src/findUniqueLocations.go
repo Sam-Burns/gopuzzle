@@ -11,11 +11,11 @@ var locationsVisited = gameMap.OrdinatesVisitedType{}
 
 func FindUniqueLocations(directionsStr string) int {
 
-	if len(directionsStr) == 0 {
-		return 0
-	}
+	inputStringLength := len(directionsStr)
 
-	//fmt.Println(locationsVisited)
+	if inputStringLength < 2 {
+		return inputStringLength
+	}
 
 	currentLocation := gameMap.GenerateOrigin()
 	locationsVisited.Clobber()
@@ -35,7 +35,7 @@ func FindUniqueLocations(directionsStr string) int {
 		locationsVisited[stepNo] = currentLocation
 	}
 
-	return gameMap.CountLocations(&locationsVisited)
+	return gameMap.CountLocations(&locationsVisited, inputStringLength)
 }
 
 func main() {
