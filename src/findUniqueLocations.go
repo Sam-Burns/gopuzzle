@@ -7,7 +7,9 @@ import (
 	"time"
 )
 
-var locationsVisited = gameMap.OrdinatesVisitedType{}
+const MemSize = 66000
+type OrdinatesVisitedType [MemSize]uint64
+var baseMemory = OrdinatesVisitedType{}
 
 func FindUniqueLocations(directionsStr string) int {
 
@@ -17,7 +19,7 @@ func FindUniqueLocations(directionsStr string) int {
 		return inputStringLength
 	}
 
-	activeMemorySlice := (locationsVisited)[0:inputStringLength]
+	activeMemorySlice := (baseMemory)[0:inputStringLength]
 
 	currentLocation := gameMap.GenerateOrigin()
 
