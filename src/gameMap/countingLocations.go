@@ -4,24 +4,22 @@ import (
 	"sort"
 )
 
-func CountLocations(ordinatesVisited *OrdinatesVisitedType, inputStringLength int) int {
+func CountLocations(ordinatesVisited *[]uint64, inputStringLength int) int {
 
-	sortArray(ordinatesVisited, &inputStringLength)
+	SortArray(ordinatesVisited)
 
 	return countUniqueOrdinates(ordinatesVisited, &inputStringLength)
 }
 
-func sortArray(ordinatesVisited *OrdinatesVisitedType, inputStringLength *int) {
-	mySlice := (*ordinatesVisited)[0:*inputStringLength]
-
+func SortArray(ordinatesVisited *[]uint64) {
 	sort.Slice(
-		mySlice,
+		*ordinatesVisited,
 		func(i, j int) bool {
 			return (*ordinatesVisited)[i] < (*ordinatesVisited)[j]
 		})
 }
 
-func countUniqueOrdinates(ordinatesVisited *OrdinatesVisitedType, inputStringLength *int) int {
+func countUniqueOrdinates(ordinatesVisited *[]uint64, inputStringLength *int) int {
 	count := 1
 	index := 1
 

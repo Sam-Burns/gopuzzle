@@ -17,8 +17,9 @@ func FindUniqueLocations(directionsStr string) int {
 		return inputStringLength
 	}
 
+	activeMemorySlice := (locationsVisited)[0:inputStringLength]
+
 	currentLocation := gameMap.GenerateOrigin()
-	locationsVisited.Clobber(inputStringLength)
 
 	for stepNo, direction := range directionsStr {
 
@@ -32,10 +33,10 @@ func FindUniqueLocations(directionsStr string) int {
 			gameMap.MoveWest(&currentLocation)
 		}
 
-		locationsVisited[stepNo] = currentLocation
+		activeMemorySlice[stepNo] = currentLocation
 	}
 
-	return gameMap.CountLocations(&locationsVisited, inputStringLength)
+	return gameMap.CountLocations(&activeMemorySlice, inputStringLength)
 }
 
 func main() {
