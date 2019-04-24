@@ -2,13 +2,12 @@ package main
 
 import (
 	"gopuzzle/gameMap"
-	"gopuzzle/stringPreprocessing"
 )
 
 
 func FindUniqueLocations(directionsStr string) int {
 
-	directionRunes := stringPreprocessing.PreprocessString(&directionsStr)
+	directionRunes := []rune(directionsStr)
 
 	inputStringLength := len(directionRunes)
 
