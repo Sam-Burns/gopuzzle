@@ -25,14 +25,11 @@ func FindUniqueLocations(directionsStr string) int {
 
 	for stepNo, direction := range directionsStr {
 
-		if direction == 'N' {
-			gameMap.MoveNorth(&currentLocation)
-		} else if direction == 'S' {
-			gameMap.MoveSouth(&currentLocation)
-		} else if direction == 'E' {
-			gameMap.MoveEast(&currentLocation)
-		} else if direction == 'W' {
-			gameMap.MoveWest(&currentLocation)
+		switch direction {
+			case 'N': gameMap.MoveNorth(&currentLocation)
+			case 'S': gameMap.MoveSouth(&currentLocation)
+			case 'E': gameMap.MoveEast(&currentLocation)
+			case 'W': gameMap.MoveWest(&currentLocation)
 		}
 
 		activeMemorySlice[stepNo] = currentLocation
