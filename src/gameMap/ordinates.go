@@ -42,3 +42,23 @@ func MoveNorthwest(location *uint64) {
 	MoveWest(location)
 	MoveNorth(location)
 }
+
+func MoveDoubleNorth(location *uint64) {
+	MoveNorth(location)
+	MoveNorth(location)
+}
+
+func MoveDoubleSouth(location *uint64) {
+	MoveSouth(location)
+	MoveSouth(location)
+}
+
+func MoveDoubleEast(location *uint64) {
+	MoveEast(location)
+	MoveEast(location)
+}
+
+func MoveDoubleWest(location *uint64) {
+	MoveWest(location)
+	MoveWest(location)
+}

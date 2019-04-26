@@ -32,6 +32,11 @@ var strippingPairs = [...]strippingPair{
 	{search: []rune{'E', 'W', 'S'}, replacement: []rune{'E', '1', 'X'}, removals: 1},
 	{search: []rune{'W', 'E', 'N'}, replacement: []rune{'W', '9', 'X'}, removals: 1},
 	{search: []rune{'W', 'E', 'S'}, replacement: []rune{'W', '3', 'X'}, removals: 1},
+
+	{search: []rune{'N', 'N', 'S'}, replacement: []rune{'8', 'S', 'X'}, removals: 1},
+	{search: []rune{'S', 'S', 'N'}, replacement: []rune{'2', 'N', 'X'}, removals: 1},
+	{search: []rune{'E', 'E', 'W'}, replacement: []rune{'6', 'W', 'X'}, removals: 1},
+	{search: []rune{'W', 'W', 'E'}, replacement: []rune{'4', 'E', 'X'}, removals: 1},
 }
 
 func PreprocessString(originalString *string) (allRunes []rune, directionsNullified int) {
@@ -119,6 +124,12 @@ func fastPreprocessString(originalString *string) (allRunes []rune, directionsNu
 					allRunes[index+1] = 'X'
 					directionsNullified += 1
 				}
+			} else if allRunes[index+1] == 'N' {
+				if allRunes[index+2] == 'S' {
+					allRunes[index]   = '8'
+					allRunes[index+1] = 'X'
+					directionsNullified += 1
+				}
 			}
 
 		} else if allRunes[index] == 'S' {
@@ -145,6 +156,12 @@ func fastPreprocessString(originalString *string) (allRunes []rune, directionsNu
 			} else if allRunes[index+1] == 'W' {
 				if allRunes[index+2] == 'E' {
 					allRunes[index]   = '1'
+					allRunes[index+1] = 'X'
+					directionsNullified += 1
+				}
+			} else if allRunes[index+1] == 'S' {
+				if allRunes[index+2] == 'N' {
+					allRunes[index]   = '2'
 					allRunes[index+1] = 'X'
 					directionsNullified += 1
 				}
@@ -177,6 +194,12 @@ func fastPreprocessString(originalString *string) (allRunes []rune, directionsNu
 					allRunes[index+1] = 'X'
 					directionsNullified += 1
 				}
+			} else if allRunes[index+1] == 'E' {
+				if allRunes[index+2] == 'W' {
+					allRunes[index]   = '6'
+					allRunes[index+1] = 'X'
+					directionsNullified += 1
+				}
 			}
 
 		} else if allRunes[index] == 'W' {
@@ -203,6 +226,12 @@ func fastPreprocessString(originalString *string) (allRunes []rune, directionsNu
 			} else if allRunes[index+1] == 'N' {
 				if allRunes[index+2] == 'S' {
 					allRunes[index]   = '7'
+					allRunes[index+1] = 'X'
+					directionsNullified += 1
+				}
+			} else if allRunes[index+1] == 'W' {
+				if allRunes[index+2] == 'E' {
+					allRunes[index]   = '4'
 					allRunes[index+1] = 'X'
 					directionsNullified += 1
 				}

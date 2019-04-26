@@ -57,6 +57,22 @@ func FindUniqueLocations(directionsStr string) int {
 				gameMap.MoveSouthwest(&currentLocation)
 				activeMemorySlice[stepNo] = currentLocation
 				stepNo++
+			case '8':
+				gameMap.MoveDoubleNorth(&currentLocation)
+				activeMemorySlice[stepNo] = currentLocation
+				stepNo++
+			case '2':
+				gameMap.MoveDoubleSouth(&currentLocation)
+				activeMemorySlice[stepNo] = currentLocation
+				stepNo++
+			case '6':
+				gameMap.MoveDoubleEast(&currentLocation)
+				activeMemorySlice[stepNo] = currentLocation
+				stepNo++
+			case '4':
+				gameMap.MoveDoubleWest(&currentLocation)
+				activeMemorySlice[stepNo] = currentLocation
+				stepNo++
 		}
 	}
 
