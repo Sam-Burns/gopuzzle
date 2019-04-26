@@ -22,3 +22,23 @@ func MoveEast(location *uint64) {
 func MoveWest(location *uint64) {
 	*location -= binary1OnXAxis
 }
+
+func MoveSoutheast(location *uint64) {
+	MoveEast(location)
+	MoveSouth(location)
+}
+
+func MoveNortheast(location *uint64) {
+	MoveEast(location)
+	MoveNorth(location)
+}
+
+func MoveSouthwest(location *uint64) {
+	MoveWest(location)
+	MoveSouth(location)
+}
+
+func MoveNorthwest(location *uint64) {
+	MoveWest(location)
+	MoveNorth(location)
+}
