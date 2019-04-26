@@ -76,16 +76,20 @@ func slowPreprocessString(originalString *string) (allRunes []rune, directionsNu
 		index++
 	}
 
-	if len(allRunes) != 0 {
-		length := float32(len(allRunes))
-		delta := float32(directionsNullified)
+	printStringCompression(&allRunes, &directionsNullified)
+
+	return allRunes, directionsNullified
+}
+
+func printStringCompression(allRunes *[]rune, directionsNullified *int) {
+	if len(*allRunes) != 0 {
+		length := float32(len(*allRunes))
+		delta := float32(*directionsNullified)
 		compressionRatio := delta / length
 		fmt.Printf("%.2f \n", compressionRatio*100)
 	} else {
 		fmt.Println("no op")
 	}
-
-	return allRunes, directionsNullified
 }
 
 func fastPreprocessString(originalString *string) (allRunes []rune, directionsNullified int) {
