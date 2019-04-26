@@ -10,14 +10,13 @@ func FindUniqueLocations(directionsStr string) int {
 
 	directionRunes, directionsNullified := stringPreprocessing.PreprocessString(&directionsStr)
 
-	inputStringLength := len(directionRunes)
-	postProcessingInputStringLength := inputStringLength - directionsNullified
+	inputStringLength := len(directionRunes) - directionsNullified
 
-	if postProcessingInputStringLength < 2 {
-		return postProcessingInputStringLength
+	if inputStringLength < 2 {
+		return inputStringLength
 	}
 
-	activeMemorySlice := make([]uint64, postProcessingInputStringLength, postProcessingInputStringLength)
+	activeMemorySlice := make([]uint64, inputStringLength, inputStringLength)
 
 	currentLocation := gameMap.GenerateOrigin()
 
@@ -45,7 +44,7 @@ func FindUniqueLocations(directionsStr string) int {
 		}
 	}
 
-	return gameMap.CountLocations(&activeMemorySlice, postProcessingInputStringLength)
+	return gameMap.CountLocations(&activeMemorySlice, inputStringLength)
 }
 
 func main() {
