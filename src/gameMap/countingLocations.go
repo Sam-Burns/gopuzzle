@@ -24,7 +24,7 @@ func countUniqueOrdinates(ordinatesVisited *[]uint64, inputStringLength *int) in
 	index := 1
 
 	for index <= *inputStringLength - 1 {
-		if (*ordinatesVisited)[index] != (*ordinatesVisited)[index-1] {
+		if (*ordinatesVisited)[index] != 0 && (*ordinatesVisited)[index] != (*ordinatesVisited)[index-1] {
 			count++
 		}
 		index++

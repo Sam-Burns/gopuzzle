@@ -2,20 +2,22 @@ package main
 
 import (
 	"gopuzzle/gameMap"
+	"gopuzzle/stringPreprocessing"
 )
 
 
 func FindUniqueLocations(directionsStr string) int {
 
-	directionRunes := []rune(directionsStr)
+	directionRunes, directionsNullified := stringPreprocessing.PreprocessString(&directionsStr)
 
 	inputStringLength := len(directionRunes)
+	postProcessingInputStringLength := inputStringLength - directionsNullified
 
-	if inputStringLength < 2 {
-		return inputStringLength
+	if postProcessingInputStringLength < 2 {
+		return postProcessingInputStringLength
 	}
 
-	activeMemorySlice := make([]uint64, inputStringLength, inputStringLength)
+	activeMemorySlice := make([]uint64, postProcessingInputStringLength, postProcessingInputStringLength)
 
 	currentLocation := gameMap.GenerateOrigin()
 
@@ -27,20 +29,23 @@ func FindUniqueLocations(directionsStr string) int {
 			case 'N':
 				gameMap.MoveNorth(&currentLocation)
 				activeMemorySlice[stepNo] = currentLocation
+				stepNo++
 			case 'S':
 				gameMap.MoveSouth(&currentLocation)
 				activeMemorySlice[stepNo] = currentLocation
+				stepNo++
 			case 'E':
 				gameMap.MoveEast(&currentLocation)
 				activeMemorySlice[stepNo] = currentLocation
+				stepNo++
 			case 'W':
 				gameMap.MoveWest(&currentLocation)
 				activeMemorySlice[stepNo] = currentLocation
+				stepNo++
 		}
-		stepNo++
 	}
 
-	return gameMap.CountLocations(&activeMemorySlice, inputStringLength)
+	return gameMap.CountLocations(&activeMemorySlice, postProcessingInputStringLength)
 }
 
 func main() {
