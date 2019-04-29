@@ -8,78 +8,78 @@ type strippingPair struct {
 	removals int
 }
 
-var strippingPairs = [...]strippingPair{
-
-	{search: []rune{'N', 'S', 'N'}, replacement: []rune{'N', 'X', 'X'}, removals: 2},
-	{search: []rune{'S', 'N', 'S'}, replacement: []rune{'S', 'X', 'X'}, removals: 2},
-	{search: []rune{'E', 'W', 'E'}, replacement: []rune{'E', 'X', 'X'}, removals: 2},
-	{search: []rune{'W', 'E', 'W'}, replacement: []rune{'W', 'X', 'X'}, removals: 2},
-
-	{search: []rune{'E', 'S', 'N'}, replacement: []rune{'3', 'N', 'X'}, removals: 1},
-	{search: []rune{'E', 'N', 'S'}, replacement: []rune{'9', 'S', 'X'}, removals: 1},
-	{search: []rune{'W', 'S', 'N'}, replacement: []rune{'1', 'N', 'X'}, removals: 1},
-	{search: []rune{'W', 'N', 'S'}, replacement: []rune{'7', 'S', 'X'}, removals: 1},
-	{search: []rune{'S', 'E', 'W'}, replacement: []rune{'3', 'W', 'X'}, removals: 1},
-	{search: []rune{'S', 'W', 'E'}, replacement: []rune{'1', 'E', 'X'}, removals: 1},
-	{search: []rune{'N', 'E', 'W'}, replacement: []rune{'9', 'W', 'X'}, removals: 1},
-	{search: []rune{'N', 'W', 'E'}, replacement: []rune{'7', 'E', 'X'}, removals: 1},
-
-	{search: []rune{'S', 'N', 'W'}, replacement: []rune{'S', '7', 'X'}, removals: 1},
-	{search: []rune{'S', 'N', 'E'}, replacement: []rune{'S', '9', 'X'}, removals: 1},
-	{search: []rune{'N', 'S', 'E'}, replacement: []rune{'N', '3', 'X'}, removals: 1},
-	{search: []rune{'N', 'S', 'W'}, replacement: []rune{'N', '1', 'X'}, removals: 1},
-	{search: []rune{'E', 'W', 'N'}, replacement: []rune{'E', '7', 'X'}, removals: 1},
-	{search: []rune{'E', 'W', 'S'}, replacement: []rune{'E', '1', 'X'}, removals: 1},
-	{search: []rune{'W', 'E', 'N'}, replacement: []rune{'W', '9', 'X'}, removals: 1},
-	{search: []rune{'W', 'E', 'S'}, replacement: []rune{'W', '3', 'X'}, removals: 1},
-
-	{search: []rune{'N', 'N', 'S'}, replacement: []rune{'8', 'S', 'X'}, removals: 1},
-	{search: []rune{'S', 'S', 'N'}, replacement: []rune{'2', 'N', 'X'}, removals: 1},
-	{search: []rune{'E', 'E', 'W'}, replacement: []rune{'6', 'W', 'X'}, removals: 1},
-	{search: []rune{'W', 'W', 'E'}, replacement: []rune{'4', 'E', 'X'}, removals: 1},
-
-	{search: []rune{'S', 'N', 'N'}, replacement: []rune{'S', '8', 'X'}, removals: 1},
-	{search: []rune{'N', 'S', 'S'}, replacement: []rune{'N', '2', 'X'}, removals: 1},
-	{search: []rune{'E', 'W', 'W'}, replacement: []rune{'E', '4', 'X'}, removals: 1},
-	{search: []rune{'W', 'E', 'E'}, replacement: []rune{'W', '6', 'X'}, removals: 1},
-}
+//var strippingPairs = [...]strippingPair{
+//
+//	{search: []rune{'N', 'S', 'N'}, replacement: []rune{'N', 'X', 'X'}, removals: 2},
+//	{search: []rune{'S', 'N', 'S'}, replacement: []rune{'S', 'X', 'X'}, removals: 2},
+//	{search: []rune{'E', 'W', 'E'}, replacement: []rune{'E', 'X', 'X'}, removals: 2},
+//	{search: []rune{'W', 'E', 'W'}, replacement: []rune{'W', 'X', 'X'}, removals: 2},
+//
+//	{search: []rune{'E', 'S', 'N'}, replacement: []rune{'3', 'N', 'X'}, removals: 1},
+//	{search: []rune{'E', 'N', 'S'}, replacement: []rune{'9', 'S', 'X'}, removals: 1},
+//	{search: []rune{'W', 'S', 'N'}, replacement: []rune{'1', 'N', 'X'}, removals: 1},
+//	{search: []rune{'W', 'N', 'S'}, replacement: []rune{'7', 'S', 'X'}, removals: 1},
+//	{search: []rune{'S', 'E', 'W'}, replacement: []rune{'3', 'W', 'X'}, removals: 1},
+//	{search: []rune{'S', 'W', 'E'}, replacement: []rune{'1', 'E', 'X'}, removals: 1},
+//	{search: []rune{'N', 'E', 'W'}, replacement: []rune{'9', 'W', 'X'}, removals: 1},
+//	{search: []rune{'N', 'W', 'E'}, replacement: []rune{'7', 'E', 'X'}, removals: 1},
+//
+//	{search: []rune{'S', 'N', 'W'}, replacement: []rune{'S', '7', 'X'}, removals: 1},
+//	{search: []rune{'S', 'N', 'E'}, replacement: []rune{'S', '9', 'X'}, removals: 1},
+//	{search: []rune{'N', 'S', 'E'}, replacement: []rune{'N', '3', 'X'}, removals: 1},
+//	{search: []rune{'N', 'S', 'W'}, replacement: []rune{'N', '1', 'X'}, removals: 1},
+//	{search: []rune{'E', 'W', 'N'}, replacement: []rune{'E', '7', 'X'}, removals: 1},
+//	{search: []rune{'E', 'W', 'S'}, replacement: []rune{'E', '1', 'X'}, removals: 1},
+//	{search: []rune{'W', 'E', 'N'}, replacement: []rune{'W', '9', 'X'}, removals: 1},
+//	{search: []rune{'W', 'E', 'S'}, replacement: []rune{'W', '3', 'X'}, removals: 1},
+//
+//	{search: []rune{'N', 'N', 'S'}, replacement: []rune{'8', 'S', 'X'}, removals: 1},
+//	{search: []rune{'S', 'S', 'N'}, replacement: []rune{'2', 'N', 'X'}, removals: 1},
+//	{search: []rune{'E', 'E', 'W'}, replacement: []rune{'6', 'W', 'X'}, removals: 1},
+//	{search: []rune{'W', 'W', 'E'}, replacement: []rune{'4', 'E', 'X'}, removals: 1},
+//
+//	{search: []rune{'S', 'N', 'N'}, replacement: []rune{'S', '8', 'X'}, removals: 1},
+//	{search: []rune{'N', 'S', 'S'}, replacement: []rune{'N', '2', 'X'}, removals: 1},
+//	{search: []rune{'E', 'W', 'W'}, replacement: []rune{'E', '4', 'X'}, removals: 1},
+//	{search: []rune{'W', 'E', 'E'}, replacement: []rune{'W', '6', 'X'}, removals: 1},
+//}
 
 func PreprocessString(originalString *string) (allRunes []rune, directionsNullified int) {
 	return fastPreprocessString(originalString)
 }
 
-func slowPreprocessString(originalString *string) (allRunes []rune, directionsNullified int) {
-
-	allRunes = []rune(*originalString)
-
-	originalLength := len(*originalString)
-
-	index := 1
-
-	stoppingPoint := originalLength - 3
-
-	directionsNullified = 0
-
-	for index <= stoppingPoint {
-
-		for _, aStrippingPair := range strippingPairs {
-			if currentRuneIsStartOfStrippingPattern(&(aStrippingPair.search), &allRunes, &index, &originalLength) {
-
-				for indexOffset, replacementRune := range aStrippingPair.replacement {
-					allRunes[index + indexOffset] = replacementRune
-				}
-
-				directionsNullified += aStrippingPair.removals
-			}
-		}
-
-		index++
-	}
-
-	printStringCompression(&allRunes, &directionsNullified)
-
-	return allRunes, directionsNullified
-}
+//func slowPreprocessString(originalString *string) (allRunes []rune, directionsNullified int) {
+//
+//	allRunes = []rune(*originalString)
+//
+//	originalLength := len(*originalString)
+//
+//	index := 1
+//
+//	stoppingPoint := originalLength - 3
+//
+//	directionsNullified = 0
+//
+//	for index <= stoppingPoint {
+//
+//		for _, aStrippingPair := range strippingPairs {
+//			if currentRuneIsStartOfStrippingPattern(&(aStrippingPair.search), &allRunes, &index, &originalLength) {
+//
+//				for indexOffset, replacementRune := range aStrippingPair.replacement {
+//					allRunes[index + indexOffset] = replacementRune
+//				}
+//
+//				directionsNullified += aStrippingPair.removals
+//			}
+//		}
+//
+//		index++
+//	}
+//
+//	printStringCompression(&allRunes, &directionsNullified)
+//
+//	return allRunes, directionsNullified
+//}
 
 func printStringCompression(allRunes *[]rune, directionsNullified *int) {
 	if len(*allRunes) != 0 {

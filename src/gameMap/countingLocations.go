@@ -1,22 +1,14 @@
 package gameMap
 
 import (
-	"sort"
+	"math/rand"
 )
 
 func CountLocations(ordinatesVisited *[]uint64, inputStringLength int) int {
 
-	SortArray(ordinatesVisited)
+	quicksort(ordinatesVisited)
 
 	return countUniqueOrdinates(ordinatesVisited, &inputStringLength)
-}
-
-func SortArray(ordinatesVisited *[]uint64) {
-	sort.Slice(
-		*ordinatesVisited,
-		func(i, j int) bool {
-			return (*ordinatesVisited)[i] < (*ordinatesVisited)[j]
-		})
 }
 
 func countUniqueOrdinates(ordinatesVisited *[]uint64, inputStringLength *int) int {
@@ -31,4 +23,31 @@ func countUniqueOrdinates(ordinatesVisited *[]uint64, inputStringLength *int) in
 	}
 
 	return count
+}
+
+func quicksort(a *[]uint64) {
+	if len(*a) < 2 {
+		return// *a
+	}
+
+	left, right := 0, len(*a)-1
+
+	pivot := rand.Int() % len(*a)
+
+	(*a)[pivot], (*a)[right] = (*a)[right], (*a)[pivot]
+
+	for i, _ := range *a {
+		if (*a)[i] < (*a)[right] {
+			(*a)[left], (*a)[i] = (*a)[i], (*a)[left]
+			left++
+		}
+	}
+
+	(*a)[left], (*a)[right] = (*a)[right], (*a)[left]
+
+	leftSlice := (*a)[:left]
+	rightSlice := (*a)[left+1:]
+
+	quicksort(&leftSlice)
+	quicksort(&rightSlice)
 }
