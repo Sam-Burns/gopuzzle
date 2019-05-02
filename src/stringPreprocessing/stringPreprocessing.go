@@ -2,11 +2,11 @@ package stringPreprocessing
 
 import "fmt"
 
-type strippingPair struct {
-	search []rune
-	replacement []rune
-	removals int
-}
+//type strippingPair struct {
+//	search []rune
+//	replacement []rune
+//	removals int
+//}
 
 //var strippingPairs = [...]strippingPair{
 //
@@ -81,9 +81,9 @@ func PreprocessString(originalString *string) (allRunes []rune, directionsNullif
 //	return allRunes, directionsNullified
 //}
 
-func printStringCompression(allRunes *[]rune, directionsNullified *int) {
-	if len(*allRunes) != 0 {
-		length := float32(len(*allRunes))
+func printStringCompression(originalLength *int, directionsNullified *int) {
+	if *originalLength != 0 {
+		length := float32(*originalLength)
 		delta := float32(*directionsNullified)
 		compressionRatio := delta / length
 		fmt.Printf("%.2f \n", compressionRatio*100)
@@ -266,19 +266,21 @@ func fastPreprocessString(originalString *string) (allRunes []rune, directionsNu
 		index++
 	}
 
+	//printStringCompression(&originalLength, &directionsNullified)
+
 	return
 
 }
 
-func currentRuneIsStartOfStrippingPattern(strippingPattern *[]rune, allRunes *[]rune, currentIndex *int, maxLength *int) bool {
-	if *currentIndex + len(*strippingPattern) > *maxLength {
-		return false
-	}
-
-	for strippingPatternIndex, strippingPatternValue := range *strippingPattern {
-		if (*allRunes)[*currentIndex + strippingPatternIndex] != strippingPatternValue {
-			return false
-		}
-	}
-	return true
-}
+//func currentRuneIsStartOfStrippingPattern(strippingPattern *[]rune, allRunes *[]rune, currentIndex *int, maxLength *int) bool {
+//	if *currentIndex + len(*strippingPattern) > *maxLength {
+//		return false
+//	}
+//
+//	for strippingPatternIndex, strippingPatternValue := range *strippingPattern {
+//		if (*allRunes)[*currentIndex + strippingPatternIndex] != strippingPatternValue {
+//			return false
+//		}
+//	}
+//	return true
+//}

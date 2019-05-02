@@ -25,28 +25,28 @@ func countUniqueOrdinates(ordinatesVisited *[]uint64, inputStringLength *int) in
 	return count
 }
 
-func quicksort(a *[]uint64) {
-	if len(*a) < 2 {
-		return// *a
+func quicksort(sliceToSort *[]uint64) {
+	if len(*sliceToSort) < 2 {
+		return
 	}
 
-	left, right := 0, len(*a)-1
+	left, right := 0, len(*sliceToSort)-1
 
-	pivot := rand.Int() % len(*a)
+	pivot := rand.Int() % len(*sliceToSort)
 
-	(*a)[pivot], (*a)[right] = (*a)[right], (*a)[pivot]
+	(*sliceToSort)[pivot], (*sliceToSort)[right] = (*sliceToSort)[right], (*sliceToSort)[pivot]
 
-	for i, _ := range *a {
-		if (*a)[i] < (*a)[right] {
-			(*a)[left], (*a)[i] = (*a)[i], (*a)[left]
+	for i, _ := range *sliceToSort {
+		if (*sliceToSort)[i] < (*sliceToSort)[right] {
+			(*sliceToSort)[left], (*sliceToSort)[i] = (*sliceToSort)[i], (*sliceToSort)[left]
 			left++
 		}
 	}
 
-	(*a)[left], (*a)[right] = (*a)[right], (*a)[left]
+	(*sliceToSort)[left], (*sliceToSort)[right] = (*sliceToSort)[right], (*sliceToSort)[left]
 
-	leftSlice := (*a)[:left]
-	rightSlice := (*a)[left+1:]
+	leftSlice := (*sliceToSort)[:left]
+	rightSlice := (*sliceToSort)[left+1:]
 
 	quicksort(&leftSlice)
 	quicksort(&rightSlice)
